@@ -1,0 +1,47 @@
+class MyCircularQueue {
+    
+    private var queue:[Int]
+    private var head: Int
+    private var capacity: Int
+    private var count: Int
+
+    init(_ k: Int) {
+        queue = Array(repeating:0, count:k)
+        capacity = k
+        head = 0
+        count = 0
+    }
+    
+    func enQueue(_ value: Int) -> Bool {
+        if isFull() { return false }
+        let afterIndex = (head + count) % capacity
+        queue[afterIndex] = value
+        count += 1
+        return true
+    }
+    
+    func deQueue() -> Bool {
+        if isEmpty() { return false }
+        head = (head + 1) % capacity
+        count -= 1
+        return true
+    }
+    
+    func Front() -> Int {
+        if isEmpty() { return -1 }
+        return queue[head]
+    }
+    
+    func Rear() -> Int {
+        if isEmpty() { return -1 }
+        return queue[(head + count - 1) % capacity]
+    }
+    
+    func isEmpty() -> Bool {
+        return count == 0
+    }
+    
+    func isFull() -> Bool {
+        return count == capacity        
+    }
+}
