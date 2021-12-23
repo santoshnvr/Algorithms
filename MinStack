@@ -1,0 +1,34 @@
+class MinStack {
+    var stack: [Int]
+    var minStack: [Int]
+    init() {
+        stack = []
+        minStack = []
+    }
+    
+    func push(_ val: Int) {
+        stack.append(val)
+        
+        if let lastValue = minStack.last {
+            let newPushValue = val < lastValue ? val : lastValue
+            minStack.append(newPushValue)
+        } else {
+            minStack.append(val)
+        }
+    }
+    
+    func pop() {
+        stack.removeLast()
+        minStack.removeLast()
+    }
+    
+    func top() -> Int {
+        guard let value = stack.last else { return -1 }
+        return value
+    }
+    
+    func getMin() -> Int {
+        guard let value = minStack.last else { return -1 }
+        return value
+    }
+}
