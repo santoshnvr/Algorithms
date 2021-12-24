@@ -1,0 +1,21 @@
+struct Stack<Element> {
+    
+    fileprivate var items: [Element] = []
+    
+    mutating func push( item: Element) {
+        items.append(item)
+    }
+    
+    mutating func pop() -> Element {
+        return items.removeLast()
+    }
+    
+    func peep() -> Element? {
+        return items.last
+    }
+    
+    func isEmpty() -> Bool {
+        return items.count == 0
+    }
+    
+}
